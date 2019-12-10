@@ -1,0 +1,79 @@
+'''
+有两个list a,b，大小都为n, 元素的值任意，无序； 
+
+要求：通过交换a,b中的元素，使a元素的和与b元素的和之间的差最小。
+'''
+
+c = a + b
+c.sort()
+a = c[:len(c)//2]
+b = c[len(c)//2:]
+
+mid_sum = (sum(a) + sum(b))//2
+print(mid_sum)
+
+status = 1    
+while status:
+    status = 0
+    for i in range(len(b)):
+        for j in range(len(a)):
+            if sum(a) <= mid_sum and sum(a)-a[j]+b[i] >= mid_sum and sum(b) >=mid_sum and sum(b)+a[j]-b[i] <= mid_sum :
+                if mid_sum-sum(a) > sum(a)-a[j]+b[i]-mid_sum :
+                    a[j],b[i] = b[i],a[j]
+                    a,b=b,a
+                    status = 1
+                    break               
+            elif sum(a)-a[j]+b[i] > sum(a):
+                a[j],b[i] = b[i],a[j]
+                status = 1
+                #print('at elif 1')
+                break
+        if status:
+            #print('in b break')
+            break
+print(a)
+print(b)
+print(sum(b)-sum(a))
+         
+
+'''
+test1:
+a=[1, 2, 3, 4] 
+b=[5, 6, 700, 800]
+result1:
+a=[700, 6, 5, 4]
+b=[1, 2, 3, 800]
+差值=91
+
+test2：
+a=[1, 50, 90] 
+b=[100, 10000, 10001]
+result2:
+a=[1, 100, 10001]
+b=[10000, 50, 90]
+差值=38
+
+test3：
+a=[1, 2, 3, 4, 5] 
+b=[6, 7, 8, 9, 10]
+result3:
+a=[8, 7, 3, 4, 5]
+b=[1, 2, 6, 9, 10]
+差值=1
+
+test4:
+a=[1, 1, 2, 3, 29]
+b=[30, 210, 232, 12311, 12312]
+result4:
+a=[12312, 210, 2, 3, 30]
+b=[29, 1, 1, 232, 12311]
+差值=17
+
+test5:
+a=[-1000, -55, -3, 0, 1, 3, 8, 33, 33]
+b=[46, 79, 99, 100, 100, 121, 1000, 1000, 1000]
+result5:
+a=[-1000, 46, 100, 8, 1, 3, 121, 1000, 1000]
+b=[1000, -55, -3, 100, 99, 79, 0, 33, 33]
+差值=7
+'''
