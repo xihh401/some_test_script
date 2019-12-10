@@ -26,10 +26,8 @@ while status:
             elif sum(a)-a[j]+b[i] > sum(a):
                 a[j],b[i] = b[i],a[j]
                 status = 1
-                #print('at elif 1')
                 break
         if status:
-            #print('in b break')
             break
 print(a)
 print(b)
