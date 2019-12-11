@@ -1,0 +1,21 @@
+'''
+根据csv的内容生成html页面
+
+bbb.csv内容如下：
+1,2,3,4,5
+6,7,8,9,0
+11,12,13,14,15
+16,17,18,19,20
+'''
+with open('ccc.html','w') as f1,open('bbb.csv') as f2:
+    f1.write('<html>\n')
+    f1.write('<body>\n')
+    f1.write('<table border="2">\n')
+    for line in f2:
+        f1.write('<tr>\n')
+        for td in line.split(','):
+            f1.write('<td>'+td+'</td>\n')
+        f1.write('</tr>\n')
+               
+    f1.write('</table>\n')
+    f1.write('</body>')
